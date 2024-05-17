@@ -14,7 +14,6 @@ export class UpdateUserComponent {
   user?: any
   data: any
 
-
   constructor(private service: UserService, private route: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
@@ -26,16 +25,23 @@ export class UpdateUserComponent {
   }
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    nome: new FormControl('', Validators.required),
+    data_nasc: new FormControl('', Validators.required),
+    gender: new FormControl('', Validators.required),
+    altura: new FormControl('', Validators.required),
+    peso: new FormControl('', Validators.required)
   })
 
   submit(){
     this.data = this.form.value
-    this.user.name = this.data.name
-    this.user.email = this.data.email
+    this.user.nome = this.data.nome
+    this.user.data_nasc = this.data.data_nasc
+    this.user.gender = this.data.gender
+    this.user.altura = this.data.altura
+    this.user.peso = this.data.user
+
+
     console.log(this.data)
-    
     this.service.updateUser(this.user?.id, this.user).subscribe(data => {
       console.log(data)
     })

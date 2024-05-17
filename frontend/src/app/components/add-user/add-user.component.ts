@@ -16,24 +16,23 @@ export class AddUserComponent {
     }
 
     data: any
-
+    
     form = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      gender: new FormControl('', Validators.required)
+      nome: new FormControl('', Validators.required),
+      data_nasc: new FormControl('', Validators.required),
+      gender: new FormControl('', Validators.required),
+      altura: new FormControl('', Validators.required),
+      peso: new FormControl('', Validators.required)
+
     });
 
     addUser() {
       this.data = this.form.value;
+      console.log(this.data)
       this.service.addUser(this.data).subscribe(data => {
         // redirect to home page
         this.router.navigate(['/']);
       });
     }
-
-    
-
-    
-
 
 }

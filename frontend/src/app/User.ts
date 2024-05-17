@@ -1,6 +1,9 @@
 export interface User {
     id: number;
-    name: string;
-    email: string;
+    nome: string;
+    data_nasc: Date;
     gender: string;
+    altura: number;
+    peso: number;
+
 }

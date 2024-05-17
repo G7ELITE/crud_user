@@ -15,10 +15,29 @@ class User(models.Model):
     """
 
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    gender = models.CharField(max_length=255)
+    nome = models.CharField(max_length=255)
+    data_nasc = models.DateField(default='1970-01-01')
+    gender = models.CharField(max_length=1, choices=[('M', 'Masculino'), ('F', 'Feminino')])
+    altura = models.FloatField(default=0.0)
+    peso = models.FloatField(default=0.0)
+
+
+    def calcular_peso_ideal(self):
+        if self.gender == 'M':
+            return round((72.7 * self.altura) - 58, 2)
+        elif self.gender == 'F':
+            return round((62.1 * self.altura) - 44.7, 2)
+        else:
+            return None
 
 
     def __str__(self):
-        return self.name
+        return self.nome
+    
+     # Definindo um método estático para recuperar um usuário pelo ID
+    @staticmethod
+    def get_user_by_id(user_id):
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return None

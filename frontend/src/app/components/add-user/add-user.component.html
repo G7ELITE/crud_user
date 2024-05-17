@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
+    <title>Adicionar usuario</title>
 </head>
 <body>
     <!--Navbar consists only Home and Add User-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">Athenas</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-              <a class="nav-link" routerLink="/add">Add User</a>
+              <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+              <a class="nav-link" routerLink="/add">Adicionar usuario</a>
             </div>
           </div>
         </div>
@@ -26,13 +26,13 @@
 
         <div class="my-5">
             <div class="mx-auto w-25 " style="max-width:100%;">
-              <h2 class="text-center mb-3">Add User</h2>
+              <h2 class="text-center mb-3">Adicionar usuario</h2>
               <form [formGroup]="form" (ngSubmit)="addUser()">
                 <!--name-->
                 <div class="row">
                   <div class="col-md-12 form-group mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input id="name"  formControlName="name" type="text" name="name" class="form-control" placeholder="Name" required>
+                    <label for="nome" class="form-label">Nome</label>
+                    <input id="nome"  formControlName="nome" type="text" name="nome" class="form-control" placeholder="nome" required>
                   </div>
                 </div>
 
@@ -40,36 +40,41 @@
                 <!--Email-->
                 <div class="row">
                     <div class="col-md-12 form-group mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input id="email" type="email"  formControlName="email" name="email" class="form-control" placeholder="email" required>
+                      <label for="data_nasc" class="form-label">Data de Nascimento</label>
+                      <input id="data_nasc" type="date"  formControlName="data_nasc" name="data_nasc" class="form-control" placeholder="data_nasc" required>
                     </div>
                   </div>
       
                 <!--Gender-->
-                <label for="gender" class="form-label">Gender</label>
+                <label for="gender" class="form-label">Genero</label>
                 <div class="form-check">
-                  <input class="form-check-input"  formControlName="gender" type="radio" name="gender" id="male" value="male">
-                  <label class="form-check-label" for="male">Male</label>
+                  <input class="form-check-input"  formControlName="gender" type="radio" name="gender" id="male" value="M">
+                  <label class="form-check-label" for="male">Homem</label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" formControlName="gender"  name="gender" id="female" value="female">
-                  <label class="form-check-label" for="female">Female</label>
+                  <input class="form-check-input" type="radio" formControlName="gender"  name="gender" id="female" value="F">
+                  <label class="form-check-label" for="female">Mulher</label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio"  formControlName="gender" name="gender" id="others" checked value="others">
-                  <label class="form-check-label" for="others">Others</label>
-                </div>
-      
-      
-               
-      
-      
                 
-                
-               
+                <!--Altura-->
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="altura" class="form-label">Altura</label>
+                    <input id="altura"  formControlName="altura"  type="text" name="altura" class="form-control" placeholder="Altura" required>
+                  </div>
+                </div>
+
+                <!--Peso-->
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="peso" class="form-label">Peso</label>
+                    <input id="peso"  formControlName="peso"  type="text" name="peso" class="form-control" placeholder="Peso"  required>
+                  </div>
+                </div>
+
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <input [disabled]="!form.valid" class="btn btn-primary w-100" type="submit" value="Submit">
+                    <input [disabled]="!form.valid" class="btn btn-primary w-100" type="submit" value="Registrar">
                   </div>
                 </div>
       

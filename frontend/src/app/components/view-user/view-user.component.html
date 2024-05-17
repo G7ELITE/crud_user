@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Users</title>
+    <title>Ver Usuario</title>
+    <!-- Adicionar Bootstrap CSS para estilo -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <!--Navbar consists only Home and Add User-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">Athenas</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-              <a class="nav-link" routerLink="/add">Add User</a>
+              <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+              <a class="nav-link" routerLink="/add">Adicionar Usuario</a>
             </div>
           </div>
         </div>
@@ -25,30 +27,47 @@
       <!--Table to display all the users-->
         <!--container-->
         <div class="container">
+            <div class="row my-3">
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <h1 class="text-center">Usuarios registrados</h1>
+                    <!-- Add Search Input and Button -->
+                    <div class="input-group" style="width: 400px;">
+                        <input type="text" class="form-control" placeholder="Pesquisar usuários" [(ngModel)]="searchTerm">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" (click)="filterUsers()">Pesquisar</button>
+                        </div>
+                    </div>
+                    <!--Add button -->
+                    <button class="btn btn-primary" routerLink="/add">Adicionar Usuario</button>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">View Users</h1>
-                    <!--Add button -->
-                    <button class="btn btn-primary" routerLink="/add">Add User</button>
                     <table class="table table-striped">
                         <thead>
                           <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Data de Nascimento</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Altura</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Ações</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let user of users">
-                            <th scope="row">{{user.id}}</th>
-                            <td>{{user.name}}</td>
-                            <td>{{user.email}}</td>
+                          <tr *ngFor="let user of filteredUsers">
+                            <td scope="row">{{user.id}}</td>
+                            <td>{{user.nome}}</td>
+                            <td>{{user.data_nasc}}</td>
                             <td>{{user.gender}}</td>
-                            <td>
-                              <button class="btn btn-primary" routerLink="/update/{{user.id}}">Edit</button>
-                              <button class="btn btn-danger mx-2" (click)="deleteUser(user.id)">Delete</button>
+                            <td>{{user.altura}}</td>
+                            <td>{{user.peso}}</td>
+                            <td *ngIf="isSearched">
+                              <button class="btn btn-primary" [routerLink]="['/update', user.id]">Editar</button>
+                              <button class="btn btn-danger mx-2" (click)="deleteUser(user.id)">Deletar</button>
+                              <!-- Adicionar botão "Peso Ideal" -->
+                              <button class="btn btn-success" (click)="calcularPesoIdeal(user.id)">Peso Ideal</button>
                             </td>
                           </tr>
                         </tbody>
@@ -56,7 +75,8 @@
                 </div>
             </div>
         </div>
-      
 
+    <!-- Adicionar Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
