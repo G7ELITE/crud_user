@@ -60,8 +60,12 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'athenas',
+        'USER': 'athenas_user',
+        'PASSWORD': 'vSTXEWkVUSnZdGuhZV0lyfxsttQPTuKw',
+        'HOST': 'dpg-cp19t6ocmk4c739gtsm0-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
