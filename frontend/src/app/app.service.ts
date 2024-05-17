@@ -8,12 +8,11 @@ import { User } from './User';
 })
 export class UserService {
   private url: string = 'http://localhost:8000/api/users/';
-  private baseUrl: string = 'http://localhost:8000/api/users/';
 
   constructor(private http: HttpClient) { }
 
   addUser(user: User): Observable<User> {
-    console.log(user)
+    console.log(user);
     return this.http.post<User>(this.url, user);
   }
 
@@ -29,13 +28,11 @@ export class UserService {
     return this.http.put<User>(`${this.url}${id}/`, user);
   }
 
+  getUserPesoIdeal(id: number): Observable<any> {
+    return this.http.get<any>(`${this.url}${id}/peso_ideal/`);
+  }
+
   deleteUser(id: number): Observable<User> {
     return this.http.delete<User>(`${this.url}${id}/`);
   }
-
-  calcularPesoIdeal(userId: number) {
-    return this.http.get<any>(`${this.url}calcular-peso-ideal/${userId}/`);
-  }
-  
 }
-

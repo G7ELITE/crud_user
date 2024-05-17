@@ -1,7 +1,21 @@
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django.http import JsonResponse
 from .models import User
 from .serializer import UserSerializer
+
+
+@api_view(['GET'])
+def calcular_peso_ideal(request, pk):
+    try:
+        user = User.objects.get(pk=pk)
+    except User.DoesNotExist:
+        return Response({'error': 'Usuário não encontrado'}, status=status.HTTP_404_NOT_FOUND)
+    
+    peso_ideal = user.calcular_peso_ideal()
+    return Response({'pesoIdeal': peso_ideal})
+
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
@@ -11,11 +25,3 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-# Adicione a nova view aqui
-def calcular_peso_ideal_view(request, user_id):
-    try:
-        user = User.objects.get(pk=user_id)
-        peso_ideal = user.calcular_peso_ideal()
-        return JsonResponse({'peso_ideal': peso_ideal})
-    except User.DoesNotExist:
-        return JsonResponse({'error': 'Usuário não encontrado'}, status=404)

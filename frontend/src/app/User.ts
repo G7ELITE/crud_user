@@ -2,7 +2,7 @@ export interface User {
     id: number;
     nome: string;
     data_nasc: Date;
-    gender: string;
+    gender: 'M' | 'F';
     altura: number;
     peso: number;
 

@@ -1,7 +1,6 @@
 from django.db import models
 
-# Create your models here
-# Users -> id, name, email, gender
+
 class User(models.Model):
 
     """
@@ -10,7 +9,7 @@ class User(models.Model):
     Atributos:
         id (AutoField): O ID único do usuário.
         name (CharField): O nome do usuário.
-        email (CharField): O endereço de e-mail do usuário.
+        data-nasc (CharField): O endereço de data_nasc do usuário.
         gender (CharField): O gênero do usuário.
     """
 
@@ -33,11 +32,3 @@ class User(models.Model):
 
     def __str__(self):
         return self.nome
-    
-     # Definindo um método estático para recuperar um usuário pelo ID
-    @staticmethod
-    def get_user_by_id(user_id):
-        try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
-            return None
