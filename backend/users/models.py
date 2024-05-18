@@ -7,10 +7,12 @@ class User(models.Model):
     Representa um usuário no sistema.
 
     Atributos:
-        id (AutoField): O ID único do usuário.
-        name (CharField): O nome do usuário.
-        data-nasc (CharField): O endereço de data_nasc do usuário.
+        id (AutoField): O ID do usuário.
+        nome (CharField): O nome do usuário.
+        data-nasc (CharField): Data de nascimento do usuário.
         gender (CharField): O gênero do usuário.
+        altura (CharField): A altura do usuário.
+        peso (CharField): O peso do usuário.
     """
 
     id = models.AutoField(primary_key=True)
